@@ -50,12 +50,12 @@ class Bookmark(BaseModel):
     createdAt: str
     commentsPermalink: str
     source: Source
-    tags: list[str]
+    tags: list[str] = []
     readTime: Optional[int] = None
-    numUpvotes: int
-    numComments: int
-    author: Author
-    bookmarkedAt: str
+    numUpvotes: int = 0
+    numComments: int = 0
+    author: Optional[Author] = None
+    bookmarkedAt: str = ""
 
 
 class Profile(BaseModel):
@@ -85,7 +85,7 @@ class Experience(BaseModel):
     id: str
     type: str
     title: str
-    company: Optional[str] = None
+    company: Optional[dict] = None
     startYear: Optional[int] = None
     endYear: Optional[int] = None
 
