@@ -70,3 +70,13 @@
 - Added error display on landing page for failed requests
 - Link to `daily.dev/settings/api` for token generation
 - Files: `HandleInput.tsx`, `InputPage.tsx`, `App.tsx`, `roadmap.ts`, `main.py`
+
+### `71be94c` — feat: add shareable/explorable roadmap for bonus points
+- **localStorage caching**: roadmaps cached for 1 hour, shared links work without token
+- **Share button**: copies URL to clipboard with toast notification
+- **Download Card**: generates 1200x630 PNG share card with roadmap summary
+- **ShareCard component**: shows profile, 7-day topics, article count, branding
+- **Open Graph meta tags** for link previews (Twitter, Discord, etc.)
+- **Dynamic document title** and OG tags when viewing a roadmap
+- **Header** now has Card (download) + Share (copy link) buttons
+- Files: `App.tsx`, `RoadmapPage.tsx`, `Header.tsx`, `ShareCard.tsx`, `Toast.tsx`, `index.html`, `vite.config.ts`
