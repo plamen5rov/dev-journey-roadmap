@@ -2,7 +2,7 @@
 
 > Turn your daily.dev bookmarks into a personalized 7-day learning roadmap.
 
-* Really SORRY  for the typo - it was supposed to be "jorney" not "horney"! *
+* Really SORRY  for the typo - it was supposed to be "journey" not "hourney"! *
 
 [![Hackathon](https://img.shields.io/badge/Hackathon-daily.dev-FF6C37?logo=dailydotdev&logoColor=white)](https://hackathon.daily.dev)
 [![Frontend](https://img.shields.io/badge/Frontend-React+Vite-61DAFB?logo=react&logoColor=white)](https://react.dev)
