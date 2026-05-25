@@ -5,6 +5,25 @@ import { RoadmapPage } from './pages/RoadmapPage'
 import { fetchRoadmap } from './api/roadmap'
 import type { RoadmapResponse } from './types'
 
+interface RoadmapRouteProps {
+  roadmap: RoadmapResponse | null
+}
+
+function RoadmapRoute({ roadmap }: RoadmapRouteProps) {
+  const { handle } = useParams()
+  if (!roadmap) {
+    return (
+      <div className="min-h-screen bg-bg-default flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-8 h-8 border-2 border-accent-secondary/30 border-t-accent-secondary rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-text-secondary">Loading roadmap...</p>
+        </div>
+      </div>
+    )
+  }
+  return <RoadmapPage data={roadmap} handle={handle!} />
+}
+
 function AppRoutes() {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
@@ -33,18 +52,7 @@ function AppRoutes() {
       />
       <Route
         path="/roadmap/:handle"
-        element={
-          roadmap ? (
-            <RoadmapPage data={roadmap} handle={useParams().handle!} />
-          ) : (
-            <div className="min-h-screen bg-bg-default flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-8 h-8 border-2 border-accent-bun/30 border-t-accent-bun rounded-full animate-spin mx-auto mb-4" />
-                <p className="text-text-secondary">Loading roadmap...</p>
-              </div>
-            </div>
-          )
-        }
+        element={<RoadmapRoute roadmap={roadmap} />}
       />
     </Routes>
   )
