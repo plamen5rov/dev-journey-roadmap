@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+@theme {
+  /* Background */
+  --color-bg-default: #0e1217;
+  --color-bg-subtle: #1c1f26;
+  --color-bg-popover: #1c1f26;
+
+  /* Text */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #cfd6e6;
+  --color-text-tertiary: #a8b3cf;
+  --color-text-disabled: rgba(168, 179, 207, 0.32);
+  --color-text-link: #5c9bfa;
+
+  /* Borders */
+  --color-border-primary: #525866;
+  --color-border-subtle: rgba(168, 179, 207, 0.4);
+
+  /* Accents - food themed */
+  --color-accent-burger: #ad6648;
+  --color-accent-burger-bolder: #a0583c;
+  --color-accent-burger-subtle: #b67052;
+  --color-accent-burger-subtler: #c07a5b;
+  --color-accent-burger-subtlest: #c98464;
+  --color-accent-burger-flat: rgba(173, 102, 72, 0.16);
+
+  --color-accent-bun: #ff8e3b;
+  --color-accent-bun-bolder: #ff7a2b;
+  --color-accent-bun-subtle: #ff9d48;
+  --color-accent-bun-subtler: #ffa555;
+  --color-accent-bun-subtlest: #ffb760;
+  --color-accent-bun-flat: rgba(255, 142, 59, 0.16);
+
+  --color-accent-cheese: #ffe923;
+  --color-accent-cheese-bolder: #ffdf00;
+  --color-accent-cheese-subtle: #ffef40;
+  --color-accent-cheese-subtler: #fff35a;
+  --color-accent-cheese-subtlest: #fff76f;
+  --color-accent-cheese-flat: rgba(255, 233, 35, 0.16);
+
+  --color-accent-avocado: #39e58c;
+  --color-accent-avocado-bolder: #1ddc6f;
+  --color-accent-avocado-subtle: #51eba0;
+  --color-accent-avocado-subtler: #65f1ae;
+  --color-accent-avocado-subtlest: #74f3bc;
+  --color-accent-avocado-flat: rgba(57, 229, 140, 0.16);
+
+  --color-accent-water: #427ef7;
+  --color-accent-water-bolder: #3169f5;
+  --color-accent-water-subtle: #508cf9;
+  --color-accent-water-subtler: #5c9bfa;
+  --color-accent-water-subtlest: #68a6fc;
+  --color-accent-water-flat: rgba(66, 126, 247, 0.16);
+
+  --color-accent-onion: #7147ed;
+  --color-accent-onion-bolder: #5f37e9;
+  --color-accent-onion-subtle: #8055f0;
+  --color-accent-onion-subtler: #8d62f4;
+  --color-accent-onion-subtlest: #9d70f8;
+  --color-accent-onion-flat: rgba(113, 71, 237, 0.16);
+
+  --color-accent-cabbage: #ce3df3;
+  --color-accent-cabbage-bolder: #c029f0;
+  --color-accent-cabbage-subtle: #d74cf6;
+  --color-accent-cabbage-subtler: #e05cf8;
+  --color-accent-cabbage-subtlest: #e669fb;
+  --color-accent-cabbage-flat: rgba(206, 61, 243, 0.16);
+
+  --color-accent-bacon: #fc538d;
+  --color-accent-bacon-bolder: #fc4079;
+  --color-accent-bacon-subtle: #fd619d;
+  --color-accent-bacon-subtler: #fd6ea9;
+  --color-accent-bacon-subtlest: #fe7ab6;
+  --color-accent-bacon-flat: rgba(252, 83, 141, 0.16);
+
+  --color-accent-ketchup: #e04337;
+  --color-accent-ketchup-bolder: #d52b20;
+  --color-accent-ketchup-subtle: #ed685c;
+  --color-accent-ketchup-subtler: #f3796c;
+  --color-accent-ketchup-subtlest: #f77a6e;
+  --color-accent-ketchup-flat: rgba(224, 67, 55, 0.16);
+
+  --color-accent-blueCheese: #2cdce6;
+  --color-accent-blueCheese-bolder: #0dcfdc;
+  --color-accent-blueCheese-subtle: #45e5ed;
+  --color-accent-blueCheese-subtler: #5cecf1;
+  --color-accent-blueCheese-subtlest: #6ff1f6;
+  --color-accent-blueCheese-flat: rgba(44, 220, 230, 0.16);
+
+  --color-accent-lettuce: #acf535;
+  --color-accent-lettuce-bolder: #92f21d;
+  --color-accent-lettuce-subtle: #bdf849;
+  --color-accent-lettuce-subtler: #ccfb5b;
+  --color-accent-lettuce-subtlest: #dbfe6c;
+  --color-accent-lettuce-flat: rgba(172, 245, 53, 0.16);
+
+  /* Surfaces & States */
+  --color-surface-hover: rgba(168, 179, 207, 0.12);
+  --color-surface-active: rgba(168, 179, 207, 0.16);
+  --color-surface-focus: #2cdce6;
+  --color-surface-float: rgba(168, 179, 207, 0.08);
+  --color-surface-secondary: #a8b3cf;
+  --color-surface-invert: #0e1217;
+
+  /* Shadows */
+  --shadow-card: 0 2px 8px rgba(14, 18, 23, 0.32);
+  --shadow-modal: 0 6px 6px rgba(0, 0, 0, 0.4);
+  --shadow-float: 0 14px 14px rgba(0, 0, 0, 0.64);
+
+  /* Typography */
+  --text-xs: 11px;
+  --text-sm: 12px;
+  --text-base: 14px;
+  --text-lg: 16px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+}
+
+/* Base styles */
+body {
+  background: var(--color-bg-default);
+  color: var(--color-text-primary);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
