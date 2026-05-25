@@ -36,3 +36,11 @@
 - Made `Bookmark.author`, `Bookmark.bookmarkedAt`, `Bookmark.tags`, etc. optional with defaults
 - Changed `Experience.company` from `str` to `dict` to match API response
 - Files: `backend/main.py`
+
+### `5cafa8c` — refactor: update color palette to match daily.dev dark theme
+- Replaced food-themed palette with daily.dev's actual dark theme colors
+- Primary bg: `#0A0A0A`, Surface: `#151515`, Accent: neon green `#5CFF5E`
+- Text hierarchy: `#F2F2F2` / `#A1A1A1` / `#8E8E8E`
+- Borders: `#2A2A2A`
+- Updated all components to use new tokens
+- Files: `frontend/src/index.css`, all component/page files
