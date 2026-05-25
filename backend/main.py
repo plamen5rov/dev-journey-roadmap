@@ -7,13 +7,13 @@ from typing import Optional
 
 import httpx
 from dotenv import load_dotenv
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, HTTPException, Query, Header
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 load_dotenv()
 
-DAILY_DEV_TOKEN = os.getenv("API_key", "")
+DEFAULT_DAILY_DEV_TOKEN = os.getenv("API_key", "")
 DAILY_DEV_API = "https://api.daily.dev/public/v1"
 
 app = FastAPI(title="Dev Journey Roadmap API")
@@ -105,13 +105,15 @@ class RoadmapResponse(BaseModel):
     totalArticles: int
 
 
-headers = {"Authorization": f"Bearer {DAILY_DEV_TOKEN}"}
+def get_headers(token: str) -> dict:
+    return {"Authorization": f"Bearer {token}"}
 
 
-async def fetch_all_bookmarks() -> list[dict]:
+async def fetch_all_bookmarks(token: str) -> list[dict]:
     """Fetch all bookmarks with cursor-based pagination."""
     all_bookmarks = []
     cursor = None
+    req_headers = get_headers(token)
     while True:
         params = {"limit": 50}
         if cursor:
@@ -119,13 +121,13 @@ async def fetch_all_bookmarks() -> list[dict]:
         async with httpx.AsyncClient() as client:
             resp = await client.get(
                 f"{DAILY_DEV_API}/bookmarks/",
-                headers=headers,
+                headers=req_headers,
                 params=params,
                 timeout=30,
             )
         if resp.status_code == 429:
             retry_after = resp.json().get("retryAfter", 5)
-            await httpx.AsyncClient().sleep(retry_after)
+            await asyncio.sleep(retry_after)
             continue
         if resp.status_code != 200:
             raise HTTPException(status_code=resp.status_code, detail=resp.text)
@@ -141,11 +143,11 @@ async def fetch_all_bookmarks() -> list[dict]:
     return all_bookmarks
 
 
-async def fetch_profile() -> dict:
+async def fetch_profile(token: str) -> dict:
     async with httpx.AsyncClient() as client:
         resp = await client.get(
             f"{DAILY_DEV_API}/profile/",
-            headers=headers,
+            headers=get_headers(token),
             timeout=15,
         )
     if resp.status_code != 200:
@@ -153,11 +155,11 @@ async def fetch_profile() -> dict:
     return resp.json()
 
 
-async def fetch_stack() -> list[dict]:
+async def fetch_stack(token: str) -> list[dict]:
     async with httpx.AsyncClient() as client:
         resp = await client.get(
             f"{DAILY_DEV_API}/profile/stack/",
-            headers=headers,
+            headers=get_headers(token),
             timeout=15,
         )
     if resp.status_code != 200:
@@ -165,11 +167,11 @@ async def fetch_stack() -> list[dict]:
     return resp.json().get("data", [])
 
 
-async def fetch_experiences() -> list[dict]:
+async def fetch_experiences(token: str) -> list[dict]:
     async with httpx.AsyncClient() as client:
         resp = await client.get(
             f"{DAILY_DEV_API}/profile/experiences/",
-            headers=headers,
+            headers=get_headers(token),
             timeout=15,
         )
     if resp.status_code != 200:
@@ -242,14 +244,31 @@ async def health():
 
 
 @app.get("/api/roadmap", response_model=RoadmapResponse)
-async def get_roadmap(handle: str = Query(..., min_length=1)):
+async def get_roadmap(
+    handle: str = Query(..., min_length=1),
+    authorization: Optional[str] = Header(None),
+):
+    token = None
+    if authorization and authorization.startswith("Bearer "):
+        token = authorization[len("Bearer "):]
+    elif DEFAULT_DAILY_DEV_TOKEN:
+        token = DEFAULT_DAILY_DEV_TOKEN
+
+    if not token:
+        raise HTTPException(
+            status_code=401,
+            detail="No API token provided. Pass Authorization header or set API_key in .env",
+        )
+
     try:
         bookmarks, profile_data, stack_data, experiences_data = await asyncio.gather(
-            fetch_all_bookmarks(),
-            fetch_profile(),
-            fetch_stack(),
-            fetch_experiences(),
+            fetch_all_bookmarks(token),
+            fetch_profile(token),
+            fetch_stack(token),
+            fetch_experiences(token),
         )
+    except HTTPException:
+        raise
     except Exception as e:
         raise HTTPException(status_code=502, detail=f"Failed to fetch daily.dev data: {str(e)}")
 

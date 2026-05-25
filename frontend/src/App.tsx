@@ -30,11 +30,11 @@ function AppRoutes() {
   const [roadmap, setRoadmap] = useState<RoadmapResponse | null>(null)
   const [error, setError] = useState<string | null>(null)
 
-  const handleSubmit = async (handle: string) => {
+  const handleSubmit = async (handle: string, token: string) => {
     setLoading(true)
     setError(null)
     try {
-      const data = await fetchRoadmap(handle)
+      const data = await fetchRoadmap(handle, token)
       setRoadmap(data)
       navigate(`/roadmap/${handle}`)
     } catch (err) {
@@ -48,7 +48,7 @@ function AppRoutes() {
     <Routes>
       <Route
         path="/"
-        element={<InputPage onSubmit={handleSubmit} loading={loading} />}
+        element={<InputPage onSubmit={handleSubmit} loading={loading} error={error} />}
       />
       <Route
         path="/roadmap/:handle"

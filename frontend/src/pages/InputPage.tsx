@@ -3,8 +3,9 @@ import { Header } from '../components/Header'
 import { HandleInput } from '../components/HandleInput'
 
 interface InputPageProps {
-  onSubmit: (handle: string) => void
+  onSubmit: (handle: string, token: string) => void
   loading: boolean
+  error: string | null
 }
 
 const features = [
@@ -25,7 +26,7 @@ const features = [
   },
 ]
 
-export function InputPage({ onSubmit, loading }: InputPageProps) {
+export function InputPage({ onSubmit, loading, error }: InputPageProps) {
   return (
     <div className="min-h-screen bg-bg-default">
       <Header />
@@ -43,6 +44,12 @@ export function InputPage({ onSubmit, loading }: InputPageProps) {
         </div>
 
         <HandleInput onSubmit={onSubmit} loading={loading} />
+
+        {error && (
+          <div className="mt-4 w-full max-w-md p-3 bg-error-flat border border-error/20 rounded-lg text-error text-sm text-center">
+            {error}
+          </div>
+        )}
 
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl w-full">
           {features.map((f) => (
