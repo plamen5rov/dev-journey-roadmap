@@ -89,3 +89,20 @@
 - Copy Link option at bottom of dropdown
 - Dropdown closes on outside click or selection
 - Files: `Header.tsx`, `RoadmapPage.tsx`
+
+### `80599b7` — chore: move frontend to root for Vercel deployment
+- Moved all frontend files from `frontend/` to project root
+- Vercel can now auto-detect Vite project at root level
+- Updated `.gitignore` to exclude `backend/venv`, `__pycache__`, `.env`, `.tmp`
+- Backend remains in `backend/` directory
+
+### `5ec9f9a` — docs: write comprehensive README.md
+- Project overview, tech stack, quickstart guide
+- Backend and frontend setup instructions
+- Configuration table for environment variables
+- Architecture diagram and project structure
+- Deployment instructions for Vercel + Render
+- Shareable features documentation
+- Data & privacy section
+- Credits and license
+- Files: `README.md`
