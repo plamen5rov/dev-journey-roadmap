@@ -63,6 +63,9 @@ export function RoadmapPage({ data, handle }: RoadmapPageProps) {
 
   const completedCount = days.filter((d) => d.completed).length
 
+  const shareUrl = `${window.location.origin}/roadmap/${handle}`
+  const shareText = `Check out my 7-day Dev Journey Roadmap — ${data.totalArticles} articles organized by topic!`
+
   return (
     <div className="min-h-screen bg-bg-default">
       <Header
@@ -70,6 +73,8 @@ export function RoadmapPage({ data, handle }: RoadmapPageProps) {
         showShare
         onShare={handleShare}
         onDownloadCard={handleDownloadCard}
+        shareUrl={shareUrl}
+        shareText={shareText}
       />
       <main className="max-w-4xl mx-auto px-6 py-8 space-y-6">
         <DeveloperDNA
