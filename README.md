@@ -2,12 +2,10 @@
 
 > Turn your daily.dev bookmarks into a personalized 7-day learning roadmap.
 
-**Really SORRY  for the typo - it was supposed to be "journey" not "hourney"!**
-
 [![Hackathon](https://img.shields.io/badge/Hackathon-daily.dev-FF6C37?logo=dailydotdev&logoColor=white)](https://hackathon.daily.dev)
 [![Frontend](https://img.shields.io/badge/Frontend-React+Vite-61DAFB?logo=react&logoColor=white)](https://react.dev)
 [![Backend](https://img.shields.io/badge/Backend-FastAPI-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
-[![Live](https://img.shields.io/badge/Live-demo-10B981)](https://dev-hourney-roadmap.vercel.app)
+[![Live](https://img.shields.io/badge/Live-demo-10B981)](https://dev-journey-roadmap.vercel.app)
 
 ## 🖼️ Screenshots
 
